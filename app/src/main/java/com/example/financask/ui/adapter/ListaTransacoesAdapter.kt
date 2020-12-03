@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.financask.R
+import com.example.financask.extension.formataParaBrasileiro
 import com.example.financask.model.Transacao
 import kotlinx.android.synthetic.main.transacao_item.view.*
 
@@ -33,7 +34,9 @@ class ListaTransacoesAdapter(
 
         val transacao = transacoes[posicao]
 
-        viewCriada.transacao_valor.setText(transacao.valor.toString())
+        viewCriada.transacao_valor.text = transacao.valor.toString()
+        viewCriada.transacao_categoria.text = transacao.categoria
+        viewCriada.transacao_data.text = transacao.data.formataParaBrasileiro()
 
         return viewCriada
     }
