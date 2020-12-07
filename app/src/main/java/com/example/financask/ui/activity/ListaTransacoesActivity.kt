@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.financask.R
 import com.example.financask.model.Tipo
 import com.example.financask.model.Transacao
+import com.example.financask.ui.ResumoView
 import com.example.financask.ui.adapter.ListaTransacoesAdapter
 import kotlinx.android.synthetic.main.activity_lista_transacoes.*
 import java.math.BigDecimal
@@ -17,7 +18,16 @@ class ListaTransacoesActivity : AppCompatActivity() {
 
         val transacoes: List<Transacao> = transacoesDeExemplo()
 
+        configuraResumo(transacoes)
         configuraLista(transacoes)
+    }
+
+    private fun configuraResumo(transacoes: List<Transacao>) {
+        val view = window.decorView
+        val resumoView = ResumoView(this, view, transacoes)
+        resumoView.adicionaReceita()
+        resumoView.adicionaDespesa()
+        resumoView.adicionaTotal()
     }
 
     private fun configuraLista(transacoes: List<Transacao>){
@@ -28,7 +38,7 @@ class ListaTransacoesActivity : AppCompatActivity() {
         return listOf(
             Transacao(
                 categoria = "Almoço de Final de Semana",
-                valor = BigDecimal(20.5),
+                valor = BigDecimal(100.00),
                 tipo = Tipo.DESPESA,
                 data = Calendar.getInstance()
             ),
@@ -37,10 +47,10 @@ class ListaTransacoesActivity : AppCompatActivity() {
                 categoria = "Economia",
                 tipo = Tipo.RECEITA),
             Transacao(
-                valor = BigDecimal(200.0),
+                valor = BigDecimal(100.0),
                 tipo = Tipo.DESPESA),
             Transacao(
-                valor = BigDecimal(500.0),
+                valor = BigDecimal(200.0),
                 categoria = "Prêmio",
                 tipo = Tipo.RECEITA)
         )
