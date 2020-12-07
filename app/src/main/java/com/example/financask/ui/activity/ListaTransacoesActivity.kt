@@ -24,7 +24,7 @@ class ListaTransacoesActivity : AppCompatActivity() {
 
     private fun configuraResumo(transacoes: List<Transacao>) {
         val view = window.decorView
-        val resumoView = ResumoView(view, transacoes)
+        val resumoView = ResumoView(this, view, transacoes)
         resumoView.adicionaReceita()
         resumoView.adicionaDespesa()
         resumoView.adicionaTotal()
@@ -47,7 +47,7 @@ class ListaTransacoesActivity : AppCompatActivity() {
                 categoria = "Economia",
                 tipo = Tipo.RECEITA),
             Transacao(
-                valor = BigDecimal(200.0),
+                valor = BigDecimal(700.0),
                 tipo = Tipo.DESPESA),
             Transacao(
                 valor = BigDecimal(500.0),
