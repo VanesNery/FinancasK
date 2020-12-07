@@ -38,7 +38,7 @@ class ListaTransacoesActivity : AppCompatActivity() {
         return listOf(
             Transacao(
                 categoria = "Almoço de Final de Semana",
-                valor = BigDecimal(20.5),
+                valor = BigDecimal(100.00),
                 tipo = Tipo.DESPESA,
                 data = Calendar.getInstance()
             ),
@@ -47,10 +47,10 @@ class ListaTransacoesActivity : AppCompatActivity() {
                 categoria = "Economia",
                 tipo = Tipo.RECEITA),
             Transacao(
-                valor = BigDecimal(700.0),
+                valor = BigDecimal(200.0),
                 tipo = Tipo.DESPESA),
             Transacao(
-                valor = BigDecimal(500.0),
+                valor = BigDecimal(200.0),
                 categoria = "Prêmio",
                 tipo = Tipo.RECEITA)
         )
