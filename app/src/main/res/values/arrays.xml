@@ -8,6 +8,7 @@
         <item>Presente</item>
         <item>Salário</item>
         <item>Vendas</item>
+        <item>13º</item>
     </string-array>
     <string-array name="categorias_de_despesa">
         <item>Despesa indefinida</item>
