@@ -56,15 +56,17 @@ class ListaTransacoesActivity : AppCompatActivity() {
                                 dataSelecionada.set(ano, mes, dia)
                                 viewCriada.form_transacao_data
                                     .setText(dataSelecionada.formataParaBrasileiro())
-                            }
-                            , ano, mes, dia)
+                            }, ano, mes, dia
+                        )
                             .show()
                     }
 
                 val adapter = ArrayAdapter
-                    .createFromResource(this,
+                    .createFromResource(
+                        this,
                         R.array.categorias_de_receita,
-                        android.R.layout.simple_spinner_dropdown_item)
+                        android.R.layout.simple_spinner_dropdown_item
+                    )
 
                 viewCriada.form_transacao_categoria.adapter = adapter
 
@@ -79,7 +81,17 @@ class ListaTransacoesActivity : AppCompatActivity() {
                         val categoriaEmTexto = viewCriada
                             .form_transacao_categoria.selectedItem.toString()
 
-                        val valor = BigDecimal(valorEmTexto)
+                        val valor = try {
+                            BigDecimal(valorEmTexto)
+                        } catch (exception: NumberFormatException) {
+                            Toast.makeText(
+                                this,
+                                "Falha na conversão de valor",
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                            BigDecimal.ZERO
+                        }
 
                         val formatoBrasileiro = SimpleDateFormat("dd/MM/yyyy")
                         val dataConvertida: Date = formatoBrasileiro.parse(dataEmTexto)
@@ -114,7 +126,7 @@ class ListaTransacoesActivity : AppCompatActivity() {
         resumoView.atualiza()
     }
 
-    private fun configuraLista(){
+    private fun configuraLista() {
         lista_transacoes_listview.adapter = (ListaTransacoesAdapter(transacoes, this))
     }
 
