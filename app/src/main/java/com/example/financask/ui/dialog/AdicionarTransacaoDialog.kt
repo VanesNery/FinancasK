@@ -1,5 +1,6 @@
 package com.example.financask.ui.dialog
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
@@ -9,14 +10,15 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.financask.R
+import com.example.financask.delegate.TransacaoDelegate
 import com.example.financask.extension.converteParaCalendar
 import com.example.financask.extension.formataParaBrasileiro
 import com.example.financask.model.Tipo
 import com.example.financask.model.Transacao
+import com.example.financask.ui.activity.ListaTransacoesActivity
 import kotlinx.android.synthetic.main.activity_lista_transacoes.*
 import kotlinx.android.synthetic.main.form_transacao.view.*
 import java.math.BigDecimal
-import java.text.SimpleDateFormat
 import java.util.*
 
 class AdicionarTransacaoDialog(
@@ -26,13 +28,13 @@ class AdicionarTransacaoDialog(
 
     private val viewCriada = criarLayout()
 
-    private fun configuraDialog() {
+    fun configuraDialog(transacaoDelegate: TransacaoDelegate) {
         configuraCampoData()
         configuraCampoCategoria()
-        configuraFormulario()
+        configuraFormulario(transacaoDelegate)
     }
 
-    private fun configuraFormulario() {
+    private fun configuraFormulario(transacaoDelegate: TransacaoDelegate) {
         AlertDialog.Builder(context)
             .setTitle(R.string.adiciona_receita)
             .setView(viewCriada)
@@ -55,8 +57,7 @@ class AdicionarTransacaoDialog(
                     categoria = categoriaEmTexto
                 )
 
-                atualizaTransacoes(transacaoCriada)
-                lista_transacoes_adiciona_menu.close(true)
+                transacaoDelegate.delegate(transacaoCriada)
 
             }
             .setNegativeButton("Cancelar", null)

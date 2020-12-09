@@ -1,11 +1,14 @@
 package com.example.financask.ui.activity
 
 import android.os.Bundle
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.example.financask.R
+import com.example.financask.delegate.TransacaoDelegate
 import com.example.financask.model.Transacao
 import com.example.financask.ui.ResumoView
 import com.example.financask.ui.adapter.ListaTransacoesAdapter
+import com.example.financask.ui.dialog.AdicionarTransacaoDialog
 import kotlinx.android.synthetic.main.activity_lista_transacoes.*
 import kotlinx.android.synthetic.main.form_transacao.view.*
 import java.util.*
@@ -23,7 +26,13 @@ class ListaTransacoesActivity : AppCompatActivity() {
 
         lista_transacoes_adiciona_receita
             .setOnClickListener {
-                configuraDialog()
+                AdicionarTransacaoDialog(window.decorView as ViewGroup, this)
+                    .configuraDialog(object : TransacaoDelegate {
+                        override fun delegate(transacao: Transacao) {
+                            atualizaTransacoes(transacao)
+                            lista_transacoes_adiciona_menu.close(true)
+                        }
+                    })
             }
     }
 
