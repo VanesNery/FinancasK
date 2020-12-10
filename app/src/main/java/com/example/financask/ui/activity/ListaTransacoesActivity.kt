@@ -10,6 +10,7 @@ import com.example.financask.model.Transacao
 import com.example.financask.ui.ResumoView
 import com.example.financask.ui.adapter.ListaTransacoesAdapter
 import com.example.financask.ui.dialog.AdicionarTransacaoDialog
+import com.example.financask.ui.dialog.AlteraTransacaoDialog
 import kotlinx.android.synthetic.main.activity_lista_transacoes.*
 
 class ListaTransacoesActivity : AppCompatActivity() {
@@ -62,6 +63,13 @@ class ListaTransacoesActivity : AppCompatActivity() {
         lista_transacoes_listview.adapter = ListaTransacoesAdapter(transacoes, this)
         lista_transacoes_listview.setOnItemClickListener { parent, view, posicao, id ->
             val transacao = transacoes[posicao]
+            AlteraTransacaoDialog(window.decorView as ViewGroup, this)
+                .chama(transacao, object : TransacaoDelegate{
+                    override fun delegate(transacao: Transacao) {
+                        atualizaTransacoes(transacao)
+                    }
+
+                })
         }
     }
 
