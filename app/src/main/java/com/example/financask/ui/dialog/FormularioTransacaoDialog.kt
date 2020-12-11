@@ -8,37 +8,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.example.financask.R
 import com.example.financask.delegate.TransacaoDelegate
 import com.example.financask.extension.converteParaCalendar
-import com.example.financask.extension.formataParaBrasileiro
 import com.example.financask.model.Tipo
 import com.example.financask.model.Transacao
+import com.example.financask.R
+import com.example.financask.extension.formataParaBrasileiro
 import kotlinx.android.synthetic.main.form_transacao.view.*
 import java.math.BigDecimal
 import java.util.*
 
-class AlteraTransacaoDialog(
-    private val viewGroup: ViewGroup,
-    private val context: Context
-) {
+open class FormularioTransacaoDialog(private val context: Context,
+                                     private val viewGroup: ViewGroup?) {
 
     private val viewCriada = criarLayout()
     private val campoValor = viewCriada.form_transacao_valor
     private val campoCategoria = viewCriada.form_transacao_categoria
     private val campoData = viewCriada.form_transacao_data
-
-    fun chama(transacao: Transacao, transacaoDelegate: TransacaoDelegate) {
-        val tipo = transacao.tipo
-
+    fun chama(tipo: Tipo, transacaoDelegate: TransacaoDelegate) {
         configuraCampoData()
         configuraCampoCategoria(tipo)
         configuraFormulario(tipo,transacaoDelegate)
-        campoValor.setText(transacao.valor.toString())
-        campoData.setText(transacao.data.formataParaBrasileiro())
-        val categoriasRetornadas = context.resources.getStringArray(categoriasPor(tipo))
-        val posicaoCategoria = categoriasRetornadas.indexOf(transacao.categoria)
-        campoCategoria.setSelection(posicaoCategoria, true)
     }
 
     private fun configuraFormulario(tipo: Tipo, transacaoDelegate: TransacaoDelegate) {
@@ -48,7 +38,7 @@ class AlteraTransacaoDialog(
         AlertDialog.Builder(context)
             .setTitle(titulo)
             .setView(viewCriada)
-            .setPositiveButton("Alterar") { _, _ ->
+            .setPositiveButton("Adicionar") { _, _ ->
                 val valorEmTexto = campoValor.text.toString()
                 val dataEmTexto = campoData.text.toString()
                 val categoriaEmTexto = campoCategoria.selectedItem.toString()
@@ -72,13 +62,12 @@ class AlteraTransacaoDialog(
 
     private fun tituloPor(tipo: Tipo): Int {
         if (tipo == Tipo.RECEITA) {
-            return R.string.altera_receita
+            return R.string.adiciona_receita
         }
-        return R.string.altera_despesa
+        return R.string.adiciona_despesa
     }
 
-
-    private fun converteCampoValor(valorEmTexto: String): BigDecimal{
+    private fun converteCampoValor(valorEmTexto: String): BigDecimal {
         return try {
             BigDecimal(valorEmTexto)
         } catch (exception: NumberFormatException) {
@@ -144,5 +133,8 @@ class AlteraTransacaoDialog(
                 false
             )
     }
+}
+
+class R {
 
 }
