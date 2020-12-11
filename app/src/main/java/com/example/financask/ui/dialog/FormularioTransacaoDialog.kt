@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import com.example.financask.delegate.TransacaoDelegate
+import com.example.financask.R
 import com.example.financask.extension.converteParaCalendar
+import com.example.financask.extension.formataParaBrasileiro
 import com.example.financask.model.Tipo
 import com.example.financask.model.Transacao
-import com.example.financask.R
-import com.example.financask.extension.formataParaBrasileiro
 import kotlinx.android.synthetic.main.form_transacao.view.*
 import java.math.BigDecimal
 import java.util.*
@@ -27,13 +26,13 @@ abstract class FormularioTransacaoDialog(private val context: Context,
     protected val campoData = viewCriada.form_transacao_data
     abstract protected val tituloBotaoPositivo: String
 
-    fun chama(tipo: Tipo, transacaoDelegate: TransacaoDelegate) {
+    fun chama(tipo: Tipo, delegate: (transacao: Transacao) -> Unit) {
         configuraCampoData()
         configuraCampoCategoria(tipo)
-        configuraFormulario(tipo,transacaoDelegate)
+        configuraFormulario(tipo, delegate)
     }
 
-    private fun configuraFormulario(tipo: Tipo, transacaoDelegate: TransacaoDelegate) {
+    private fun configuraFormulario(tipo: Tipo, delegate: (transacao: Transacao) -> Unit) {
 
         val titulo = tituloPor(tipo)
 
@@ -55,7 +54,7 @@ abstract class FormularioTransacaoDialog(private val context: Context,
                     categoria = categoriaEmTexto
                 )
 
-                transacaoDelegate.delegate(transacaoCriada)
+                delegate(transacaoCriada)
 
             }
             .setNegativeButton("Cancelar", null)

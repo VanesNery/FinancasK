@@ -2,8 +2,8 @@ package com.example.financask.ui.dialog
 
 import android.content.Context
 import android.view.ViewGroup
-import com.example.financask.model.Tipo
 import com.example.financask.R
+import com.example.financask.model.Tipo
 
 class AdicionarTransacaoDialog(
     viewGroup: ViewGroup,
