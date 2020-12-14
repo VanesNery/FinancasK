@@ -1,6 +1,7 @@
 package com.example.financask.ui.activity
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -76,6 +77,9 @@ class ListaTransacoesActivity : AppCompatActivity() {
             setOnItemClickListener { _, _, posicao, _ ->
                 val transacao = transacoes[posicao]
                 chamaDialogDeAlteracao(transacao, posicao)
+            }
+            setOnCreateContextMenuListener {menu, _, _ ->
+                menu.add(Menu.NONE, 1, Menu.NONE, "Remover")
             }
         }
     }
