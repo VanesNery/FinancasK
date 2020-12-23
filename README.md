@@ -37,6 +37,6 @@ A interface também foi planejada especificamente para rodar em dispositivos mov
 
 ## 5. Imagem da Interface
 
-- [Tela do sistema](/img/Screenshot_1607378452.png)
+- ![Tela do sistema](/img/Screenshot_1607378452.png)
 
-- [Video da aplicação](/img/FinancaK.mp4)
+- ![Video da aplicação](/img/FinancaK.mp4)
