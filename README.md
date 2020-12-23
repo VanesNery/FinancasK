@@ -1,12 +1,11 @@
 # FinancasK
 
 ## Indice
-1. [O que é ?](#o-que-é)
-2. [Como utilizar?](3como-utilizar) 
-3. [Tecnologias Utilizadas](#tecnologias-utilizadas)
-4. [Objetivos de aprendizagem e Considerações Gerais](#objetivos-de-aprendizagem-e-considerações-gerais)
-5. [Imagem da Interface](#imagem-da-interface)
-6. [Link](#link)
+1. [O que é ?](#1-o-que-é)
+2. [Como utilizar?](#2-como-utilizar) 
+3. [Tecnologias Utilizadas](#3-tecnologias-utilizadas)
+4. [Objetivos de aprendizagem e Considerações Gerais](#4-objetivos-de-aprendizagem-e-considerações-gerais)
+5. [Imagem da Interface](#5-imagem-da-interface)
 
 * * * 
 ## 1. O que é?
