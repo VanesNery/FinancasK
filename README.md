@@ -40,4 +40,4 @@ A interface também foi planejada especificamente para rodar em dispositivos mov
 ![Tela do sistema](/img/Screenshot_1607378452.png)
 
 - Video da aplicação 
-![Video da aplicação](/img/FinancaK.gif =500x886)
+![Video da aplicação](/img/FinancaK.gif?s=50)
